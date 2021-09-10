@@ -1,0 +1,18 @@
+< ref 속성이란 ? >
+코어 컴포넌트 중에는 TextInput, ScrollView, FlatList 처럼 메서드를 제공하는 게 있음
+-> 얘네는 컴포넌트의 리액트요소(클래스의 인스턴스와 같은 개념)를 얻을 수 있어야 컴포넌트객체.메서드() 형태로 호출할 수 있다
+-> ref 속성을 제공한다 ! 이걸로 컴포넌트의 인스턴스를 얻을 수 있고 -> ref.메서드() 형태로 코드를 실행할 수 있다
+
+#ref 속성의 타입
+interface 몰라
+
+# useRef 훅
+이함수로 ref값을 얻으면 ref.함수() 하면 됨
+
+-> 스크롤 / TextInput 컴포넌트에서 useRef 활용! 
+
+
+# KeyboardAvoidingView ! (뷰임)
+-> 텍스트 인풋 (입력창) 을 키보드가 가릴 때 스크롤이 올라와서 가리지 않도록 !!
+* 버그가잇음..; -> KeyboardAwareScrollView를 대신사용하면 해결쓰. react-native-keyboard-aware-scroll-view 패키지 설치하면댐. 
+ -> 여기도 아이폰버그가잇음 -> scrollToFocusedInput 메서드 사용하면댑니다. 매소드는 ref로 ~

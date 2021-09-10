@@ -1,0 +1,42 @@
+import React from 'react'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+
+import Chat from "./Chat"
+import Board from "./Board"
+import Friend from "./Friend"
+import Alarm from "./Alarm"
+
+import type {RouteProp, ParamListBase} from '@react-navigation/native'
+type TabBarIconProps = {focused: boolean; color: string; size: number}
+
+const screenOPtions=({route}:{route: RouteProp<ParamListBase, string>}) => {
+  return{
+    tabBarIcon: ({focused, color, size}: TabBarIconProps) => {
+      const{name} = route
+      switch(name) {
+        case 'Chat':
+          return <Icon name="account-group-outline" size={size} color={color} />
+        case 'Board':
+          return <Icon name="bulletin-board" size={size} color={color} />
+        case 'Friend':
+          return <Icon name="account-search-outline" size={size} color={color} />
+      }
+      return <Icon name="bell-ring-outline" size={size} color={color} />
+    }
+  }
+}
+
+const Tab = createBottomTabNavigator() 
+
+export default function CopyMe() {
+  return (
+    <Tab.Navigator screenOptions={screenOPtions}>
+      <Tab.Screen name="Chat" component={Chat} 
+        options={{tabBarLabel: 'Home' }} />
+      <Tab.Screen name="Board" component={Board} />
+      <Tab.Screen name="Friend" component={Friend} /> 
+      <Tab.Screen name="Alarm" component={Alarm} />
+    </Tab.Navigator>
+  )
+}

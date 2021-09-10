@@ -1,0 +1,38 @@
+export default function App() {
+    const selects = useMemo(() => ['Chat', 'Board', 'Friend', 'Alarm'], [])
+    const [select, setSelect] = useState<string>(selects[0])
+    const onPress = useCallback((text) => () => setSelect(text), [])
+    const buttons = useMemo(() =>
+        selects.map((text) => (
+            <Text key={text} onPress={onPress(text)} style={styles.button}>{text}</Text>
+        )), [])
+    const title = <Text style={styles.title}>
+        {select == 'Chat' && "실시간 만남"}
+        {select == 'Board' && "게시판"}
+        {select == 'Alarm' && "알림"}
+        {select == 'Friend' && "친구 찾기"}</Text>
+
+    return (
+        <View style={styles.safeAreaView}>
+            <View style={styles.topBar}>{title}
+            </View>
+            {select == 'Chat' && <Chat />}
+            {select == 'Board' && <Board />}
+            {select == 'Friend' && <Friend />}
+            {select == 'Alarm' && <Alarm />}
+            <View style={styles.bottomBar}>{buttons}</View>
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    safeAreaView: { flex: 1 },
+    title: { left: 60, fontSize: 17, alignItems: 'center', top: 45 },
+    topBar: { height: 85, backgroundColor: '#86A5E1' },
+    button: { fontSize: 20, color: 'black' },
+    bottomBar: {
+        height: 71, backgroundColor: 'white',
+        flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'
+    }
+})
+
